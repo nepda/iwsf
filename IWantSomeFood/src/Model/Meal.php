@@ -65,7 +65,7 @@ final class Meal extends \Prooph\EventSourcing\AggregateRoot
         }
         $this->recordThat(
             \IWantSomeFood\Model\Event\MealTitleChanged::occur(
-                $this->id,
+                $this->aggregateId(),
                 [
                     'title' => $title,
                 ]

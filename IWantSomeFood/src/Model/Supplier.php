@@ -61,7 +61,7 @@ final class Supplier extends \Prooph\EventSourcing\AggregateRoot
 
         $this->recordThat(
             \IWantSomeFood\Model\Event\SupplierNameChanged::occur(
-                $this->id,
+                $this->aggregateId(),
                 [
                     'name' => $name,
                 ]

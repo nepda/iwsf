@@ -66,7 +66,6 @@ class SupplierTest extends \IWantSomeFoodTest\TestCase
 
         $supplier->changeName('Chili hot!');
 
-
         /** @var \Prooph\EventSourcing\AggregateChanged[] $events */
         $events = $this->popRecordEvents($supplier);
 
@@ -78,5 +77,19 @@ class SupplierTest extends \IWantSomeFoodTest\TestCase
         $this->assertSame(\IWantSomeFood\Model\Event\SupplierNameChanged::class, $event->messageName());
         $this->assertSame($this->id, $event->id());
         $this->assertSame('Chili hot!', $event->name());
+    }
+
+    public function testNothingHappensWhenNotChangingName()
+    {
+        $supplier = $this->reconstituteSupplierFromHistory(
+            $this->supplierAdded()
+        );
+
+        $supplier->changeName($this->name);
+
+        /** @var \Prooph\EventSourcing\AggregateChanged[] $events */
+        $events = $this->popRecordEvents($supplier);
+
+        $this->assertCount(0, $events);
     }
 }

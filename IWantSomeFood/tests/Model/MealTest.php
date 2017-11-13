@@ -79,4 +79,18 @@ class MealTest extends \IWantSomeFoodTest\TestCase
         $this->assertSame($this->mealId, $event->id());
         $this->assertSame('Super duper mushroom pizza', $event->title());
     }
+
+    public function testNothingHappensWhenNotChangingTitle()
+    {
+        $meal = $this->reconstituteMealFromHistory(
+            $this->mealAdded()
+        );
+
+        $meal->changeTitle($this->mealTitle);
+
+        /** @var \Prooph\EventSourcing\AggregateChanged[] $events */
+        $events = $this->popRecordEvents($meal);
+
+        $this->assertCount(0, $events);
+    }
 }
