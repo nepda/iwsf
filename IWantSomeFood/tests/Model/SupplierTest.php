@@ -77,6 +77,6 @@ class SupplierTest extends \IWantSomeFoodTest\TestCase
 
         $this->assertSame(\IWantSomeFood\Model\Event\SupplierNameChanged::class, $event->messageName());
         $this->assertSame($this->id, $event->id());
-        $this->assertSame('Chili hot!', $event->title());
+        $this->assertSame('Chili hot!', $event->name());
     }
 }

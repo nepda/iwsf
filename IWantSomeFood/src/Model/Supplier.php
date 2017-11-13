@@ -22,12 +22,17 @@ final class Supplier extends \Prooph\EventSourcing\AggregateRoot
     }
 
     /**
-     * Apply given event
+     * @param \Prooph\EventSourcing\AggregateChanged|\IWantSomeFood\Model\Event\SupplierAdded|\IWantSomeFood\Model\Event\SupplierNameChanged $event
      */
     protected function apply(\Prooph\EventSourcing\AggregateChanged $event): void
     {
         switch ($event->messageName()) {
-            case '':
+            case \IWantSomeFood\Model\Event\SupplierAdded::class:
+                $this->id = $event->id();
+                $this->name = $event->name();
+                break;
+            case \IWantSomeFood\Model\Event\SupplierNameChanged::class:
+                $this->name = $event->name();
                 break;
         }
     }
@@ -46,5 +51,21 @@ final class Supplier extends \Prooph\EventSourcing\AggregateRoot
         );
 
         return $self;
+    }
+
+    public function changeName(string $name): void
+    {
+        if ($name === $this->name) {
+            return;
+        }
+
+        $this->recordThat(
+            \IWantSomeFood\Model\Event\SupplierNameChanged::occur(
+                $this->id,
+                [
+                    'name' => $name,
+                ]
+            )
+        );
     }
 }
