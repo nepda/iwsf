@@ -15,8 +15,7 @@ class MealRepository extends \Prooph\EventSourcing\Aggregate\AggregateRepository
             \Prooph\EventSourcing\Aggregate\AggregateType::fromAggregateRootClass(\IWantSomeFood\Model\Meal::class),
             new \Prooph\EventSourcing\EventStoreIntegration\AggregateTranslator(),
             null,
-            null,
-            true
+            new \Prooph\EventStore\StreamName('meal')
         );
     }
 

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once 'bootstrap.php';
+require_once 'bootstrap.event-bus.php';
 
 $r1 = $pdo->query('show tables like "%event_streams%"')->fetchAll();
 if (!$r1) {
@@ -16,4 +17,21 @@ if (!$r2) {
     $pdo->exec($sql2);
 }
 
-
+$streamName = new \Prooph\EventStore\StreamName('meal');
+if (!$eventStore->hasStream($streamName)) {
+    $eventStore->create(
+        new \Prooph\EventStore\Stream(
+            $streamName,
+            new ArrayIterator()
+        )
+    );
+}
+$streamName = new \Prooph\EventStore\StreamName('supplier');
+if (!$eventStore->hasStream($streamName)) {
+    $eventStore->create(
+        new \Prooph\EventStore\Stream(
+            $streamName,
+            new ArrayIterator()
+        )
+    );
+}

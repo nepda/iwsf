@@ -21,7 +21,7 @@ class AddNewMealHandler
         $this->repository = $repository;
     }
 
-    public function __invoke(\IWantSomeFood\Model\Command\AddNewMeal $command)
+    public function __invoke(AddNewMeal $command): void
     {
         $meal = \IWantSomeFood\Model\Meal::mealAdded($command->id(), $command->title());
         $this->repository->save($meal);
