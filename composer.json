@@ -1,4 +1,14 @@
 {
+  "name": "nepda/iwsf",
+  "description": "I want some food. A simple proof-of-concept collaborative food ordering application which makes use of some [prooph](https://github.com/prooph) components.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nepomuk Fraedrich",
+      "email": "info@nepda.eu",
+      "homepage": "https://nepda.eu"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "IWantSomeFood\\": "./src/"

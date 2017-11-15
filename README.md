@@ -1,7 +1,9 @@
-I Want Some Food
-================
+# I Want Some Food
 
 A simple proof-of-concept application which makes use of some [prooph](https://github.com/prooph) components.
+
+May be this project will die as baby. But I'm looking forward to some experiments with DDD, Event Sourcing, CQRS and
+Microservices and maybe TDD. **Any suggestions are welcome!**. I'm currently new with these techniques.
 
 [Product vision](https://martinfowler.com/articles/lean-inception/write-product-vision.html):
 
@@ -10,12 +12,11 @@ A simple proof-of-concept application which makes use of some [prooph](https://g
 * **the** IWantSomeFood app
 * **is a** small web application
 * **that** helps to organize the process of ordering and "billing".
-* **Different from** any other application, there is none 
-* **our product** exists.
+* **Different from** separate ordering of each person and on each supplier
+* **our product** will unify the process of searching for meals and ordering them.
 
 
-Features/Goals
---------------
+## Features/Goals
 
 * [ ] Add new meals
 * [ ] Add new suppliers
@@ -29,3 +30,21 @@ Features/Goals
 * [ ] Assign one assignee for todays order
 * [ ] Close sign-ups for today
 * [ ] Do the order/mark as ordered
+
+
+## Installation
+
+### 1. Clone / copy files
+
+    git clone https://github.com/nepda/iwsf.git
+    composer install
+
+### Testing
+
+    php vendor/bin/phpunit
+
+
+## Run some basic scripts
+
+    php scripts/create_event_stream.php
+    php scripts/create_some_meals.php
