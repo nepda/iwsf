@@ -1,5 +1,8 @@
 # I Want Some Food
 
+[![Build Status](https://travis-ci.org/nepda/iwsf.png?branch=master)](https://travis-ci.org/nepda/iwsf)
+
+
 A simple proof-of-concept application which makes use of some [prooph](https://github.com/prooph) components.
 
 May be this project will die as baby. But I'm looking forward to some experiments with DDD, Event Sourcing, CQRS and
