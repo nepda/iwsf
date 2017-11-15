@@ -16,6 +16,9 @@ class ChangeMealTitleHandler
     public function __invoke(ChangeMealTitle $command)
     {
         $meal = $this->repository->get($command->id());
+        if (!$meal instanceof \IWantSomeFood\Model\Meal) {
+            throw \IWantSomeFood\Model\Exception\MealNotFound::withMealId($command->id());
+        }
         $meal->changeTitle($command->title());
         $this->repository->save($meal);
     }
