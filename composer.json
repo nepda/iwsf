@@ -1,12 +1,12 @@
 {
   "autoload": {
     "psr-4": {
-      "IWantSomeFood\\": "IWantSomeFood/src/"
+      "IWantSomeFood\\": "./src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "IWantSomeFoodTest\\": "IWantSomeFood/tests/"
+      "IWantSomeFoodTest\\": "./tests/"
     }
   },
   "require": {
