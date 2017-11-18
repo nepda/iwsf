@@ -21,8 +21,8 @@ Microservices and maybe TDD. **Any suggestions are welcome!**. I'm currently new
 
 ## Features/Goals
 
-* [ ] Add new meals
-* [ ] Add new suppliers
+* [x] Add new meals
+* [x] Add new suppliers
 * [ ] Configure suppliers to deliver some meals at specific price and menu card number
 * [ ] Register new user
 * [ ] Manage users (?)
@@ -44,10 +44,17 @@ Microservices and maybe TDD. **Any suggestions are welcome!**. I'm currently new
 
 ### Testing
 
-    php vendor/bin/phpunit
+    docker-compose run --rm php php vendor/bin/phpunit
 
 
 ## Run some basic scripts
 
-    php scripts/create_event_stream.php
-    php scripts/create_some_meals.php
+    docker-compose up -d
+
+    docker-compose run --rm php php scripts/create_event_stream.php
+    docker-compose down
+    docker-compose up -d
+
+
+    docker-compose run --rm php php scripts/create_some_meals.php
+    docker-compose run --rm php php scripts/create_some_supplier.php

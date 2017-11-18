@@ -1,0 +1,44 @@
+version: '2'
+services:
+
+  mariadb:
+    image: mariadb
+    ports:
+      - 3388:3306
+    volumes:
+      - ./var/database:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root-secure
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root-secure
+      - MYSQL_DATABASE=eating_test
+  php:
+    image: prooph/php:7.1-fpm-xdebug
+    volumes:
+      - .:/var/www
+    depends_on:
+      - mariadb
+    environment:
+      - PHP_IDE_CONFIG="serverName=localhost"
+
+  projection_meal:
+    image: prooph/php:7.1-cli
+    entrypoint:
+      - /app/.docker/wait_for_sql.sh
+    volumes:
+      - .:/app
+    depends_on:
+      - mariadb
+      - php
+    command: php /app/scripts/meal_projection.php
+
+  projection_supplier:
+    image: prooph/php:7.1-cli
+    entrypoint:
+      - /app/.docker/wait_for_sql.sh
+    volumes:
+      - .:/app
+    depends_on:
+      - php
+      - mariadb
+    command: php /app/scripts/supplier_projection.php
